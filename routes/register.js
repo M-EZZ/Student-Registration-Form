@@ -15,7 +15,7 @@ router.post('/', function (req, res, next) {
     if (validateEmail(email) && username && password) {
         var query = `insert into User(id, username, password, email) values (null, '${username}', '${password}', '${email}')`
         db.query(query, (err, rows, fields) => {
-            if (err) res.send(400)
+            if (err) res.send(422)
             // TODO: redirect to departments
             // res.redirect('../departments')
         })

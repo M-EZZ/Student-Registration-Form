@@ -1,0 +1,36 @@
+#forms-container {
+  width: 600px;
+  height: 300px;
+  padding: 20px;
+  margin: 10% auto 0 auto;
+  background: #fff;
+  position: relative;
+  transition: 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+#forms-container.register {
+  height: 390px;
+}
+
+#forms-container.register #register-form {
+  transform: translateX(0);
+}
+
+#forms-container.register #login-form {
+  transform: translateX(-105%);
+}
+
+.form-container {
+  position: absolute;
+  width: 560px;
+  transition: 0.5s ease-in-out;
+}
+
+#register-form {
+  transform: translateX(105%);
+}
+
+#login-form {
+  transform: translateX(0);
+}
