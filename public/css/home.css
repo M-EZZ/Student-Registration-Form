@@ -13,11 +13,11 @@
   height: 390px;
 }
 
-#forms-container.register #register-form {
+#forms-container.register #register-form-container {
   transform: translateX(0);
 }
 
-#forms-container.register #login-form {
+#forms-container.register #login-form-container {
   transform: translateX(-105%);
 }
 
@@ -27,10 +27,10 @@
   transition: 0.5s ease-in-out;
 }
 
-#register-form {
+#register-form-container {
   transform: translateX(105%);
 }
 
-#login-form {
+#login-form-container {
   transform: translateX(0);
 }

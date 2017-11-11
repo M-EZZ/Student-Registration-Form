@@ -16,7 +16,7 @@
                     Register
                 </label>
             </div>
-            <div id="login-form" class="form-container">
+            <div id="login-form-container" class="form-container">
                 <form method="post">
                     <div>
                         <label for="username">Username</label>
@@ -31,8 +31,8 @@
                     </div>
                 </form>
             </div>
-            <div id="register-form" class="form-container">
-                <form method="post" action="/register">
+            <div id="register-form-container" class="form-container">
+                <form id="register-form">
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" name="username" class="form-control" required/>
@@ -58,6 +58,7 @@
     </section>
 </body>
 
+<script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/home.js"></script>
 
 </html>

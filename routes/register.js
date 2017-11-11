@@ -10,7 +10,7 @@ router.post('/', [
 ], function (req, res, next) {
     var errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.mapped() });
+      return res.status(403).json({ errors: errors.mapped() });
     }
 
     var email = req.body.email
