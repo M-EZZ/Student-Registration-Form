@@ -19,8 +19,8 @@ router.post('/', [
     var query = `insert into User(id, username, password, email) values (null, '${username}', '${password}', '${email}')`
     db.query(query, (err, rows, fields) => {
         if (err) res.status(422).json({ errors: err })
-        // TODO: redirect to departments
-        // res.redirect('../departments')
+        req.session.userId = rows.insertId
+        res.status(200).json({ success: true })
     })
 })
 
