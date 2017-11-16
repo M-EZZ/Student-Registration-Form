@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('./partials/headers') %>
+        <link rel="stylesheet" href="css/courses.css">
+    </head>
+
+    <body>
+        <section id="courses-container" class="z-depth-2">
+            <h3 class="center-align">Courses</h3>
+            <form action="/courses" method="POST">
+                <p>
+                    <input type="checkbox" id="test5" name="test5" checked />
+                    <label for="test5">Red</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="test6" name="test6" checked />
+                    <label for="test6">Yellow</label>
+                </p>
+                <div class="right-align">
+                    <button type="submit" class="btn">Save</button>
+                </div>
+            </form>
+        </section>
+    </body>
+</html>
