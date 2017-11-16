@@ -1,6 +1,8 @@
 var formToggle = document.getElementById('form-toggle');
 var formsContainer = document.getElementById('forms-container');
 var registerForm = document.getElementById('register-form');
+var registerErrors = document.getElementById('register-errors');
+var loginErrors = document.getElementById('login-errors');
 
 
 // adding class of transition between login/registeration
@@ -16,6 +18,7 @@ formToggle.addEventListener('change', function () {
 // submit register form by AJAX
 registerForm.addEventListener('submit', function(event) {
   event.preventDefault();
+  registerErrors.classList.remove('active');
   $.ajax({
     url: '/register',
     method: 'POST',
@@ -29,20 +32,36 @@ registerForm.addEventListener('submit', function(event) {
     },
     error: function (error) {
       if (error.status === 422) {
-        showErrors(['email or username is already taken'])
+        showErrors(['email or username is already taken'], 'register')
       } else if (error.status === 403) {
-        var responseErrors = JSON.parse(error.responseText).errors
-        var errors = []
+        var responseErrors = JSON.parse(error.responseText).errors;
+        var errors = [];
         for (error in responseErrors) {
           errors.push(responseErrors[error].msg)
         }
-        showErrors(errors)
+        showErrors(errors, 'register')
       }
     }
   })
 })
 
 
-function showErrors (errors) {
-  console.log(errors);
+function showErrors (errors, formType) {
+  let errorsElement = null;
+  let errorsUl = null;
+  if (formType === 'register') {
+    errorsElement = registerErrors;
+    errorsUl = document.querySelector('#register-errors ul')
+  } else if (formType === 'login') {
+    errorsElement = document.getElementById('login-errors');
+    errorsUl = document.querySelector('#login-errors ul')
+  }
+
+  errorsUl.innerHTML = '';
+  errors.forEach(error => {
+    let li = document.createElement('li');
+    li.innerHTML = error;
+    errorsUl.appendChild(li)
+  })
+  errorsElement.classList.add('active');
 }
