@@ -31,13 +31,6 @@ create table Course (
 	Foreign key(department_id) references Department(id)
 );
 
-create table User_Course (
-	user_id int,
-	course_id int,
-	Foreign key(user_id) references User(id),
-	Foreign key(course_id) references Course(id)
-);
-
 
 insert into Department(id, name, description) values (NULL, 'Computer', 'Computer Department Description');
 insert into Department(id, name, description) values (NULL, 'Communication', 'Communication Department Description');

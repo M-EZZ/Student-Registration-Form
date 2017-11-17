@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>home</title>
     <%- include('./partials/headers') %>
     <link rel="stylesheet" href="css/home.css">
 </head>
@@ -17,7 +18,7 @@
                 </label>
             </div>
             <div id="login-form-container" class="form-container">
-                <form method="post" action="/login">
+                <form id="login-form">
                     <div class="input-field">
                         <label for="username">Username</label>
                         <input type="text" name="username" class="form-control" />
@@ -27,7 +28,7 @@
                         <input type="password" name="password" class="form-control" />
                     </div>
                     <div class="right-align">
-                        <div id="login-errors">
+                        <div id="login-errors" class="left-align">
                             <ul>
 
                             </ul>
@@ -54,7 +55,7 @@
                     </div>
 
                     <div class="right-align">
-                        <div id="register-errors">
+                        <div id="register-errors" class="left-align">
                             <ul>
 
                             </ul>

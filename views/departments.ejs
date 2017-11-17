@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Departments</title>
+    <%- include('./partials/headers') %>
+    <link rel="stylesheet" href="css/departments.css">
+</head>
+
+<body>
+    <section id="departments-container" class="z-depth-2">
+        <h2 class="center-align">Welcome <%= user.username %></h2>
+        <h5 class="center-align">Departments</h5>
+
+        <form action="/departments" method="POST">
+            <div class="input-field col s12">
+                <select id="departments-select" name="department">
+                    <!--<option value="" disabled selected>Choose your option</option>-->
+                    <% departments.forEach(department => { %>
+                    <option value="<%= department.id %>"><%= department.name %></option>
+                    <% }) %>
+                </select>
+                <label>Select you department</label>
+            </div>
+            <div class="right-align">
+                <button type="submit" class="btn">Save</button>
+            </div>
+        </form>
+    </section>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script>
+        $('#departments-select').material_select();
+    </script>
+</body>
+</html>

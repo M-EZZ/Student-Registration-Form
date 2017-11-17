@@ -25,21 +25,23 @@ registerForm.addEventListener('submit', function(event) {
     data: {
       username: registerForm.username.value,
       password: registerForm.password.value,
-      email: registerForm.email.value,
+      email: registerForm.email.value
     },
     success: function (response) {
-      console.log(response);
+      window.location = '/departments'
     },
     error: function (error) {
-      if (error.status === 422) {
-        showErrors(['email or username is already taken'], 'register')
-      } else if (error.status === 403) {
+      if (error.status === 403) {
         var responseErrors = JSON.parse(error.responseText).errors;
         var errors = [];
         for (error in responseErrors) {
           errors.push(responseErrors[error].msg)
         }
         showErrors(errors, 'register')
+      } else if (error.status === 422) {
+        showErrors(['email or username is already taken'], 'register')
+      } else {
+          showErrors(['something wrong happened'], 'register')
       }
     }
   })
@@ -53,11 +55,11 @@ loginForm.addEventListener('submit', function(event) {
         url: '/login',
         method: 'POST',
         data: {
-            username: registerForm.username.value,
-            password: registerForm.password.value,
+            username: loginForm.username.value,
+            password: loginForm.password.value
         },
         success: function (response) {
-            console.log(response);
+            window.location = '/departments'
         },
         error: function (error) {
             if (error.status === 401 ) {
@@ -69,8 +71,8 @@ loginForm.addEventListener('submit', function(event) {
                     errors.push(responseErrors[error].msg)
                 }
                 showErrors(errors, 'login')
-            } else if (errors.status === 422){
-                showErrors(['something wrong happened وخلاص'], 'login')
+            } else {
+                showErrors(['something wrong happened '], 'login')
             }
         }
     })

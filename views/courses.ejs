@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Courses</title>
         <%- include('./partials/headers') %>
         <link rel="stylesheet" href="css/courses.css">
     </head>
@@ -19,12 +20,14 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>Alvin</td>
-                        <td>Eclair</td>
-                        <td>$0.87</td>
-                        <td>$0.87</td>
-                    </tr>
+                    <% courses.forEach(course => { %>
+                        <tr>
+                            <td><%= course.name %></td>
+                            <td><%= course.description %></td>
+                            <td><%= course.instructor_name %></td>
+                            <td><%= course.credit_hours %></td>
+                        </tr>
+                    <% }) %>
                 </tbody>
             </table>
         </section>
