@@ -2,6 +2,7 @@ var formToggle = document.getElementById('form-toggle');
 var formsContainer = document.getElementById('forms-container');
 var registerForm = document.getElementById('register-form');
 var registerErrors = document.getElementById('register-errors');
+var loginForm = document.getElementById('login-form');
 var loginErrors = document.getElementById('login-errors');
 
 
@@ -13,7 +14,6 @@ formToggle.addEventListener('change', function () {
         formsContainer.classList.remove('register')
     }
 })
-
 
 // submit register form by AJAX
 registerForm.addEventListener('submit', function(event) {
@@ -44,6 +44,39 @@ registerForm.addEventListener('submit', function(event) {
     }
   })
 })
+
+// login register form by AJAX
+loginForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    loginErrors.classList.remove('active');
+    $.ajax({
+        url: '/login',
+        method: 'POST',
+        data: {
+            username: registerForm.username.value,
+            password: registerForm.password.value,
+        },
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (error) {
+            if (error.status === 401 ) {
+                showErrors(['Wrong username or password'], 'login')
+            } else if (error.status === 403) {
+                var responseErrors = JSON.parse(error.responseText).errors;
+                var errors = [];
+                for (error in responseErrors) {
+                    errors.push(responseErrors[error].msg)
+                }
+                showErrors(errors, 'login')
+            } else if (errors.status === 422){
+                showErrors(['something wrong happened وخلاص'], 'login')
+            }
+        }
+    })
+})
+
+
 
 
 function showErrors (errors, formType) {
